@@ -1,6 +1,24 @@
 <h1>{{ post.title }}</h1>
 
-<div>By <b>{{ post.author }}</b> - {{ post.pub_date|date:'F d, Y' }}</div>
-<div>
-    <p>{{ post.content }}</p>
+<div id="Post">
+    <div id="Content">
+        <p>{{ post.content }}</p>
+    </div>
+    <div id="Info">By <b>{{ post.author }}</b> - {{ post.pub_date|date:'F d, Y' }}</div>
+</div>
+
+{% if comments %}
+<div id="Comments">
+    {% for comment in comments %}
+    <p>{{ comment.content }}</p>
+    <a href="mailto:{{ comment.email }}">{{ comment.name }}</a> - {{ comment.pub_date|date:'F d, Y' }}
+    {% endfor %}
+</div>
+{% endif %}
+
+<div id="PostComment">
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Post">
+    </form>
 </div>
