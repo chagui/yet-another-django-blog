@@ -1,9 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)  # ToDo: Create Author model
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     pub_date = models.DateTimeField('date published')
     content = models.TextField()
 
@@ -23,3 +24,6 @@ class Comment(models.Model):
     email = models.EmailField()
     pub_date = models.DateTimeField('date published')
     content = models.TextField()
+
+    def __str__(self):
+        return f'{self.name} comment on {self.post.title}'
