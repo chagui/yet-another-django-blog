@@ -8,4 +8,4 @@ class Post(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return f'"{self.title}" by {self.author} - {self.pub_date}'
+        return f'"{self.title}" by {self.author} - {self.pub_date.strftime("%B %d, %Y")}'

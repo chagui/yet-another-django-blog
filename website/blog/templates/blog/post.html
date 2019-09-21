@@ -1,6 +1,6 @@
 <h1>{{ post.title }}</h1>
 
-<div>By <b>{{ post.author }}</b> - {{ post.pub_date }}</div>
+<div>By <b>{{ post.author }}</b> - {{ post.pub_date|date:'F d, Y' }}</div>
 <div>
     <p>{{ post.content }}</p>
 </div>
