@@ -1,12 +1,15 @@
 {% if latest_posts %}
-    <ul>
+<ul>
     {% for post in latest_posts %}
-        <li><p><div>
-            <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
-            <p>{{ post.content|truncatechars:300 }}</p>
+    <li>
+        <p>
+            <div>
+                <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
+        <p>{{ post.content|truncatechars:300 }}</p>
+        {{ post.number_of_comments }} comment(s)
         </p></div></li>
     {% endfor %}
-    </ul>
+</ul>
 {% else %}
-    <p>No posts are available.</p>
+<p>No posts are available.</p>
 {% endif %}
