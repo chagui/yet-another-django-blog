@@ -30,6 +30,9 @@ class PostView(generic.UpdateView):
         context['form'] = CommentForm
         return context
 
+    def get_queryset(self):
+        return super().get_queryset().filter(status=PostStatus.PUBLISHED.value)
+
     def post(self, request, *args, **kwargs):
         form = CommentForm(request.POST)
         post = self.get_object()
