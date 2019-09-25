@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
 
+from .models import PostStatus
 from .forms import CommentForm
 from .models import Comment, Post
 
@@ -15,7 +16,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         # returns the most recent blog posts
-        return Post.objects.order_by('-pub_date')
+        return Post.objects.filter(status=PostStatus.PUBLISHED.value).order_by('-pub_date')
 
 
 class PostView(generic.UpdateView):
